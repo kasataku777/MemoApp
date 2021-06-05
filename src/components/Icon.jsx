@@ -15,7 +15,7 @@ export default function Icon(props){
     if(!fontLoaded){
         return null;
     }
-    return <CustomIcon name={name} size={size} color={color} style={{lineHight: size - 1}}/>
+    return <CustomIcon name={name} size={size} color={color} style={{lineHeight: size - 1}}/>
 }
 
 
