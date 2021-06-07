@@ -10,15 +10,19 @@ import firebase from 'firebase';
  import MemoCreateScreen from './src/screens/MemoCreateScreen';
 import LogInScreen from './src/screens/LogInScreen';
 import SignUpScreen from './src/screens/SignUpScreen';
+
+
 import {firebaseConfig} from './env';
+// require("firebase");
+require("firebase/firestore");
+
+if(firebase.apps.length===0){
+  firebase.initializeApp(firebaseConfig);
+  }
 
 const Stack = createStackNavigator();
 
 
-
-if(firebase.apps.length===0){
-firebase.initializeApp(firebaseConfig);
-}
 export default function App() {
 
 
