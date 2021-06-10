@@ -5,6 +5,7 @@ import {shape,string} from 'prop-types';
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
 import firebase from 'firebase';
+import {translateErrors} from '../utils';
 
 export default function MemoEditScreen (props){
    const {navigation,route}=props;
@@ -25,6 +26,7 @@ export default function MemoEditScreen (props){
        })
        .catch(
          (error)=>{
+           const errorMsg = translateErrors(error.code);
            Alert.alert(error.code);
          }
        );
