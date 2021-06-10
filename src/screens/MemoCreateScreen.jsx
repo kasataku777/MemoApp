@@ -5,6 +5,7 @@ import {View,StyleSheet, TextInput,Alert} from 'react-native';
 import CircleButton from '../components/CircleButton';
 import KeyboardSafeView from '../components/KeyboardSafeView';
 import firebase from 'firebase';
+import { translateErrors } from '../utils';
 
 
 export default function MemoCreateScreen(props){
@@ -16,11 +17,12 @@ export default function MemoCreateScreen(props){
         const db=firebase.firestore();
         const ref =db.collection(`users/${currentUser.uid}/memos`);
 
-        ref.add({bodyText,updatedAt:new Date(),}).then((docRef)=>{
-            console.log('Created',docRef.id);
+        ref.add({bodyText,updatedAt:new Date(),}).then(()=>{
             navigation.goBack();
         })
-        .catch((error)=>{console.log('Error',error)});
+        .catch((error)=>{
+          const errorMsg=translateErrors(error.code);
+          Alert.alert(errorMsg.title,errorMsg.description)});
 
     }
     return (
